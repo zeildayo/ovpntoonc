@@ -1,37 +1,38 @@
-/* --- Google Font（ピクセルフォント）をインポート --- */
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-
-/* --- 全体のスタイル --- */
+/* --- 全体の基本設定 --- */
 body {
-  background-color: #1a1a1a; /* 暗い背景色 */
-  color: #f0f0f0; /* 明るいテキスト色 */
-  font-family: 'Press Start 2P', monospace; /* ピクセルフォント */
-  font-size: 12px;
-  line-height: 1.6;
-  padding: 20px;
+  /* グラデーション背景 */
+  background: linear-gradient(to top, #302b63 0%, #24243e 100%);
+  /* 丸みのあるフォント（フォールバックを追加） */
+  font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+  color: #fff;
   display: flex;
   flex-direction: column;
-  align-items: center; /* 全体を中央揃え */
+  align-items: center;
+  min-height: 100vh; /* スクロール対応のため height -> min-height に変更 */
+  margin: 0;
+  padding: 30px;
+  box-sizing: border-box; /* paddingを含めて計算 */
 }
 
-/* --- 各セクションのラッパー (body > div) --- */
+/* --- 各セクションのラッパー (すりガラス風) --- */
 body > div {
-  background-color: #2a2a2a; /* 背景より少し明るいグレー */
-  border: 4px solid #f0f0f0; /* 白い枠線 */
-  border-radius: 0; /* 角丸なし */
-  padding: 25px;
-  margin-bottom: 25px;
   width: 90%;
-  max-width: 800px; /* 最大幅を指定 */
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  max-width: 800px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  padding: 30px;
+  margin-bottom: 25px;
+  box-sizing: border-box;
 }
 
 /* --- タイトル (h1) --- */
 h1 {
-  color: #FFFF00; /* テトリス・イエロー */
-  text-shadow: 3px 3px #FF0000; /* ブロック感を出す影 (赤) */
-  font-size: 28px;
+  font-size: 2.5rem; /* 3remから少し調整 */
   margin: 0 0 25px 0;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+  color: #fff;
   text-align: center;
   text-transform: uppercase;
 }
@@ -44,134 +45,130 @@ ul {
 }
 
 li {
-  margin-bottom: 20px; /* 各フォーム項目を離す */
+  margin-bottom: 25px; /* 各フォーム項目を離す */
 }
 
 /* --- ラベル (label) --- */
 label {
-  display: block; /* ラベルと入力欄を縦に並べる */
+  display: block;
   margin-bottom: 10px;
-  color: #00FFFF; /* テトリス・水色 */
-  font-size: 14px;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
 }
 
 /* --- テキスト入力欄 (input[type="text"]) --- */
 input[type="text"] {
   box-sizing: border-box;
   width: 100%;
-  background-color: #000;
-  border: 2px solid #888;
-  border-radius: 0;
-  color: #39FF14; /* ターミナル風グリーン */
-  padding: 10px;
-  font-family: 'Courier New', monospace;
-  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.2); /* 暗めの背景 */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: #fff;
+  padding: 15px;
+  font-family: 'Helvetica Rounded', Arial, sans-serif; /* 入力は丸文字 */
+  font-size: 1rem;
 }
 
-input[type="text"]:focus {
+/* --- テキストエリアとログ (暗めの背景) --- */
+textarea#output,
+div#log {
+  box-sizing: border-box;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  padding: 15px;
+  font-family: 'Courier New', Courier, monospace; /* 出力とログは等幅 */
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+textarea#output {
+  min-height: 300px;
+  color: #39FF14; /* ターミナル風グリーン */
+}
+
+div#log {
+  min-height: 150px;
+  color: #ccc; /* ログは少し落ち着いた色に */
+  overflow-x: auto;
+}
+
+/* フォーカス時のスタイル */
+input[type="text"]:focus,
+textarea#output:focus {
   outline: none;
-  border-color: #FFFF00; /* フォーカス時に黄色 */
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
 /* --- ファイル入力欄 (input[type="file"]) --- */
 input[type="file"] {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 12px;
-  color: #f0f0f0;
+  font-family: inherit;
+  font-size: 1rem;
+  color: #eee;
+  width: 100%;
 }
 
-/* ファイル選択ボタンのスタイル */
+/* ファイル選択ボタンのスタイル (丸いボタン風) */
 input[type="file"]::file-selector-button {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 12px;
-  padding: 8px 12px;
-  border: 2px solid #fff;
-  border-radius: 0;
-  background-color: #0000FF; /* テトリス・青 */
-  color: #fff;
+  font-family: inherit;
+  font-weight: bold;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 50px;
+  background-color: white;
+  color: #302b63; /* 背景の暗い色 */
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s;
+  margin-right: 15px;
 }
 
 input[type="file"]::file-selector-button:hover {
-  background-color: #fff;
-  color: #0000FF;
+  transform: scale(1.05);
 }
 
 /* --- 変換ボタン (button#convertbutton) --- */
 button#convertbutton {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 16px;
-  padding: 12px 24px;
-  border: 3px solid #fff;
-  border-radius: 0;
+  font-family: inherit; /* 'Arial Rounded MT Bold' を継承 */
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding: 15px 40px;
+  border: none;
+  border-radius: 50px; /* 強く丸める */
   cursor: pointer;
-  text-transform: uppercase;
-  transition: all 0.2s ease;
-  color: #fff;
-  background-color: #FF0000; /* テトリス・赤 */
+  transition: transform 0.2s;
   display: block;
   width: 100%;
+  margin-top: 10px;
+  color: #302b63; /* 背景の暗い色 */
+  background-color: white;
 }
 
 button#convertbutton:hover {
-  background-color: #fff;
-  color: #FF0000;
+  transform: scale(1.02); /* 少し拡大 */
 }
 
 /* --- 説明テキスト (p) --- */
 p {
-  font-size: 14px;
+  font-size: 1.1rem;
   color: #f0f0f0;
   text-align: left;
   margin-top: 0;
+  margin-bottom: 10px;
 }
 
 p > b {
-  color: #00FFFF; /* "Output"の文字を水色に */
-}
-
-/* --- 出力テキストエリア (textarea#output) --- */
-textarea#output {
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 300px;
-  background-color: #000;
-  color: #39FF14; /* ターミナル風グリーン */
-  border: 3px solid #888;
-  padding: 10px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 14px;
-  border-radius: 0;
-  line-height: 1.5;
-}
-
-textarea#output:focus {
-  outline: none;
-  border-color: #FFFF00;
-}
-
-/* --- ログエリア (div#log) --- */
-div#log {
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 150px;
-  background-color: #111;
-  color: #aaa; /* ログは少し暗い色に */
-  border: 3px solid #555;
-  border-radius: 0;
-  padding: 10px;
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 12px;
-  text-align: left;
-  overflow-x: auto;
+  font-weight: bold;
+  color: #fff;
 }
 
 /* ログの各行 */
 div#log > p {
   margin: 0;
-  padding: 2px 0;
-  border-bottom: 1px dotted #444; /* 行間の区切り線 */
+  padding: 3px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 div#log > p:last-child {
