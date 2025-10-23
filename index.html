@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="ja">
   <head>
     <meta charset="utf-8">
 
-    <title>OpenVPN to ONC</title>
+    <title>OvpntoONC</title>
     <meta name="description" content="Convert OpenVPN config files to ONC files">
     <link rel="stylesheet" href="style.css">
 
@@ -501,31 +501,31 @@
 
   <body onload="setHandler()">
     <div>
-      <h1>ovpn2onc</h1>
+      <h1>ovpn to onc</h1>
       <ul>
         <li>
-          <label for="connname">Name for connection (can be chosen freely):</label>
+          <label for="connname">VPNの名前 (自由に変更可能):</label>
           <input type="text" id="connname">
         </li>
         <li>
-          <label for="inputopenvpn">OpenVPN config file (*.ovpn):</label>
+          <label for="inputopenvpn">Ovpnのコンフィグファイル (*.ovpn):</label>
           <input type="file" id="inputopenvpn">
         </li>
         <li>
-          <label for="inputcertificates">Certificates and keys (can be multiple files):</label>
+          <label for="inputcertificates">証明書とキー (複数のファイルを使う場合あり):</label>
           <input type="file" id="inputcertificates" multiple>
         </li>
       </ul>
-      <button id="convertbutton" type="button">Convert</button>
+      <button id="convertbutton" type="button">変換</button>
     </div>
     <div>
-      <p><b>Output</b> (copy this into a new file and load it in ChromeOS)</p>
+      <p><b>アウトプット</b>(これを新しいファイルにコピーしてChromeOSで読み込んでください)</p>
       <textarea readonly id="output" wrap="off" rows="40" cols="100"></textarea>
     </div>
     <div>
       <p>&nbsp;</p>
       <p>&nbsp;</p>
-      <p>Debugging info:</p>
+      <p>デバッグ情報:</p>
       <div id="log"></div>
     </div>
   </body>
